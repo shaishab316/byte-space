@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { poppins, satoshi } from '@/lib/fonts';
 import './globals.css';
 import Footer from './_components/Footer';
+import Navbar from './_components/Navbar';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable} ${satoshi.variable}`}>
       <body>
+        <Navbar />
         {children}
         <Footer />
       </body>
