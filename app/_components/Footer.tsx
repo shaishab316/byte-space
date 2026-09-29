@@ -4,7 +4,7 @@ import { NewsletterForm } from './NewsletterForm';
 export const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-background text-foreground border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
+      <div className="max-w-7xl mx-auto py-12 md:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 md:pb-16">
           <div className="lg:col-span-5 flex flex-col space-y-6">
             <a
