@@ -1,9 +1,9 @@
-import Header from './_components/Header';
+import Pagination from '@/components/Pagination';
 import FilterBar from './_components/FilterBar';
+import Header from './_components/Header';
 import CategoryPills from './_components/CategoryPills';
 import CourseCard from './_components/CourseCard';
-import { allCourses, categories } from './_data/coursesData';
-import Pagination from '@/components/Pagination';
+import { allCourses, categories } from '@/app/courses/_data/coursesData';
 
 export default function CoursesPage() {
   return (
