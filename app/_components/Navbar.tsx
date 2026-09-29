@@ -23,7 +23,6 @@ export const Navbar: React.FC = () => {
     <header className="absolute top-0 z-50 w-full bg-transparent">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
-          {/* Brand Logo */}
           <div className="flex items-center">
             <Link
               href="/"
@@ -40,7 +39,6 @@ export const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation Links */}
           <nav
             aria-label="Main Navigation"
             className="hidden items-center gap-8 md:flex"
@@ -64,7 +62,6 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Desktop Actions */}
           <div className="hidden items-center gap-6 md:flex">
             <Link
               href="/login"
@@ -87,7 +84,6 @@ export const Navbar: React.FC = () => {
             </button>
           </div>
 
-          {/* Mobile Actions & Menu Controls */}
           <div className="flex items-center gap-2 md:hidden">
             <button
               type="button"
@@ -115,7 +111,6 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div
           id="mobile-menu"

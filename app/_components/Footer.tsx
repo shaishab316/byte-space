@@ -29,7 +29,6 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 pt-2 lg:pt-0">
-            {/* Column 1 */}
             <div className="flex flex-col space-y-3 text-body-sm text-neutral-700">
               <a href="#" className="hover:text-foreground transition-colors">
                 Featured Courses
