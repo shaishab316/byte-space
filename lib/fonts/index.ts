@@ -11,12 +11,12 @@ export const poppins = Poppins({
 export const satoshi = localFont({
   src: [
     {
-      path: '../fonts/Satoshi/Satoshi-Regular.otf',
+      path: '../../fonts/Satoshi/Satoshi-Regular.otf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../fonts/Satoshi/Satoshi-Medium.otf',
+      path: '../../fonts/Satoshi/Satoshi-Medium.otf',
       weight: '500',
       style: 'normal',
     },
