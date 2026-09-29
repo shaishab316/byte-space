@@ -101,3 +101,33 @@
     font-weight: 600;
   }
 }
+
+@utility bg-grid-* {
+  --grid-color-raw: var(--grid-color-value, 255 255 255);
+  --grid-alpha: var(--grid-opacity-value, 0.4);
+  --grid-line: var(--grid-width-value, 1px);
+
+  background-image:
+    linear-gradient(
+      to right,
+      rgb(var(--grid-color-raw) / var(--grid-alpha)) 0px,
+      rgb(var(--grid-color-raw) / var(--grid-alpha)) var(--grid-line),
+      transparent var(--grid-line)
+    ),
+    linear-gradient(
+      to bottom,
+      rgb(var(--grid-color-raw) / var(--grid-alpha)) 0px,
+      rgb(var(--grid-color-raw) / var(--grid-alpha)) var(--grid-line),
+      transparent var(--grid-line)
+    );
+
+  background-size: --value([length]) --value([length]);
+}
+
+@utility bg-grid-line-* {
+  --grid-width-value: --value([length]);
+}
+
+@utility bg-grid-color-* {
+  --grid-color-value: --value([color]);
+}
