@@ -49,7 +49,7 @@ export function CourseHero({
             <Link
               href={`/instructors/${instructor.id}`}
               onClick={(event) => event.stopPropagation()}
-              className="text-primary hover:underline relative z-10 font-medium"
+              className="text-secondary hover:underline relative z-10 font-medium"
             >
               {instructor.name}
             </Link>
