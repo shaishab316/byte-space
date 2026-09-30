@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import React from 'react';
-import { avatarImages } from '../_constants/avatarImages';
 
 const features = [
   'Share Your Expertise',

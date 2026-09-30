@@ -29,7 +29,7 @@ export const DiscoverCourses: React.FC = () => {
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+              className={`cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium transition ${
                 active === cat
                   ? 'bg-secondary text-neutral-600'
                   : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'

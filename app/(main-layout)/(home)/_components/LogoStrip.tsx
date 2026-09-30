@@ -1,14 +1,20 @@
 import React from 'react';
 
-const logos = ['Logoipsum', 'Logoipsum', 'Logoipsum', 'Logoipsum', 'Logoipsum'];
+const logos = [
+  '/images/logo-strip/1.svg',
+  '/images/logo-strip/2.svg',
+  '/images/logo-strip/3.svg',
+  '/images/logo-strip/4.svg',
+  '/images/logo-strip/5.svg',
+];
 
 export const LogoStrip: React.FC = () => {
   return (
-    <section className="w-full border-b border-neutral-100 bg-white py-8">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-12 gap-y-4 px-4 opacity-60">
-        {logos.map((name, i) => (
+    <section className="w-full border-b border-neutral-100 bg-neutral-50 py-20">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-18 gap-y-4">
+        {logos.map((logoSrc, i) => (
           <div key={i} className="flex items-center gap-2 text-neutral-500">
-            <span className="text-lg font-semibold tracking-tight">{name}</span>
+            <img src={logoSrc} />
           </div>
         ))}
       </div>
