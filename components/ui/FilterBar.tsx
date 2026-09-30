@@ -41,7 +41,7 @@ export function FilterBar({ categories, levels }: FilterBarProps) {
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-4">
-      <div className="flex items-center space-x-4 text-sm text-neutral-600">
+      <div className="flex flex-wrap items-center gap-2 text-sm text-neutral-600 sm:gap-4">
         <Dropdown
           options={priceOptions}
           value={filters.price}
@@ -93,7 +93,7 @@ export function FilterBar({ categories, levels }: FilterBarProps) {
         />
       </div>
 
-      <div className="flex items-center space-x-2 text-sm text-neutral-600">
+      <div className="flex flex-wrap items-center gap-2 text-sm text-neutral-600">
         <Dropdown
           options={sortOptions}
           value={filters.sort}

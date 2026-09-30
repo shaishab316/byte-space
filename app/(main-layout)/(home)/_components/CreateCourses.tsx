@@ -9,7 +9,7 @@ const features = [
 
 export default function CreateCourses() {
   return (
-    <section className="">
+    <section className="px-4 sm:px-6">
       <div className="mx-auto grid max-w-7xl items-center justify-between gap-12 lg:grid-cols-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/images/hero/ManageCourses.png" alt="" />

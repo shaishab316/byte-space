@@ -41,7 +41,7 @@ export function CourseExplorer({
   const pagination = data?.pagination;
 
   return (
-    <main className="flex-1 max-w-7xl w-full mx-auto py-10 space-y-8">
+    <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-10 space-y-8 sm:px-6 lg:px-0">
       <FilterBar
         categories={data?.categories ?? []}
         levels={data?.levels ?? []}

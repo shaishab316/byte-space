@@ -96,7 +96,7 @@ export function CourseSidebar({
   const remainingCount = Math.max(0, totalLessons - previewLessons.length);
 
   return (
-    <div className="w-full max-w-95 bg-white rounded-[28px] p-8 border border-slate-200/80 shadow-xs font-sans text-slate-800">
+    <div className="w-full max-w-95 bg-white rounded-[28px] p-6 border border-slate-200/80 shadow-xs font-sans text-slate-800 sm:p-8">
       <div>
         <h3 className="text-[22px] font-bold text-slate-900 tracking-tight leading-snug">
           {totalLessons} Lessons ({totalHours} hours)

@@ -8,7 +8,7 @@ export default function CreatorCTA() {
       <div className="relative z-10 mx-auto max-w-3xl text-center">
         <h2 className="mb-4 text-3xl font-semibold tracking-tight md:text-4xl lg:text-5xl">
           Unlock Your Potential as a
-          <br />
+          <br className="hidden sm:block" />
           Creator with ByteSpace
         </h2>
         <p className="mx-auto mb-10 max-w-xl text-sm text-blue-100 md:text-base">

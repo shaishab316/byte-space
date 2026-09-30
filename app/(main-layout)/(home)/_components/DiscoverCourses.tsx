@@ -12,7 +12,7 @@ export default function DiscoverCourses() {
   const courses = data?.courses.slice(0, 6) ?? [];
 
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white px-4 py-20 sm:px-6">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center">
           <h2 className="mb-3 text-3xl font-semibold tracking-tight text-neutral-950 md:text-4xl">

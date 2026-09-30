@@ -4,7 +4,7 @@ import { avatarImages } from '@/lib/constants/avatars';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full bg-primary text-white flex flex-col items-center px-4 pb-20 overflow-hidden font-sans">
+    <section className="relative min-h-[70vh] md:min-h-screen w-full bg-primary text-white flex flex-col items-center px-4 pb-20 overflow-hidden font-sans">
       <div className="absolute top-0 w-screen h-full pointer-events-none select-none">
         <Image
           src="/images/hero/Hero_Frame-1.png"
@@ -30,8 +30,8 @@ export default function HeroSection() {
 
       <div className="absolute inset-0 pointer-events-none bg-grid-[80px] opacity-20 bg-grid-color-white bg-grid-line-[1px]" />
 
-      <div className="max-w-4xl mx-auto text-center z-10 flex flex-col items-center mt-36">
-        <h1 className="text-[44px] md:text-[64px] lg:text-[72px] leading-[1.15] font-semibold tracking-tight mb-6">
+      <div className="w-[80vw] md:max-w-4xl mx-auto text-center z-10 flex flex-col items-center mt-28 sm:mt-36">
+        <h1 className="text-3xl sm:text-[44px] md:text-[64px] lg:text-[72px] leading-[1.15] font-semibold tracking-tight mb-6">
           Get Access to Hundreds
           <br /> Courses Available
         </h1>

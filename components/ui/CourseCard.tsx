@@ -37,13 +37,13 @@ export function CourseCard({
         />
 
         <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-1.5 z-10">
-          <span className="bg-white/60 group-hover:bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[13px] font-normal text-gray-700 shadow-xs transition-colors duration-200">
+          <span className="bg-white/60 group-hover:bg-white/80 backdrop-blur-md px-2 py-1 rounded-full text-[11px] font-normal text-gray-700 shadow-xs transition-colors duration-200 sm:px-3.5 sm:py-1.5 sm:text-[13px]">
             {course.lessons}
           </span>
-          <span className="bg-white/60 group-hover:bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[13px] font-normal text-gray-700 shadow-xs transition-colors duration-200">
+          <span className="bg-white/60 group-hover:bg-white/80 backdrop-blur-md px-2 py-1 rounded-full text-[11px] font-normal text-gray-700 shadow-xs transition-colors duration-200 sm:px-3.5 sm:py-1.5 sm:text-[13px]">
             {course.duration}
           </span>
-          <span className="bg-white/60 group-hover:bg-white/80 backdrop-blur-md px-3.5 py-1.5 rounded-full text-[13px] font-normal text-gray-700 shadow-xs transition-colors duration-200">
+          <span className="bg-white/60 group-hover:bg-white/80 backdrop-blur-md px-2 py-1 rounded-full text-[11px] font-normal text-gray-700 shadow-xs transition-colors duration-200 sm:px-3.5 sm:py-1.5 sm:text-[13px]">
             {course.comments}
           </span>
         </div>
@@ -52,7 +52,7 @@ export function CourseCard({
       <div className="pt-6 px-1 pb-2 flex flex-col space-y-5">
         <div className="flex items-baseline justify-between gap-3">
           <div className="space-y-1">
-            <h3 className="font-extrabold text-[22px] text-gray-900 tracking-tight leading-snug transition-colors duration-200 group-hover:text-primary">
+            <h3 className="font-extrabold text-xl text-gray-900 tracking-tight leading-snug transition-colors duration-200 group-hover:text-primary sm:text-[22px]">
               {course.title}
             </h3>
             <p className="text-[15px] text-gray-500 font-normal">
@@ -73,7 +73,7 @@ export function CourseCard({
           </div>
         </div>
 
-        <div className="flex items-center gap-3 pt-1">
+        <div className="flex flex-wrap items-center gap-3 pt-1">
           <div className="flex items-center space-x-2 bg-[#F3F4F6] px-4 py-2.5 rounded-full text-[14px] font-medium text-gray-700 transition-colors duration-200 group-hover:bg-gray-200/80">
             <svg
               width="14"

@@ -52,7 +52,7 @@ export function AuthForm({
       <span className="text-[18px] font-semibold text-blue-600 uppercase tracking-wider block mb-1">
         {eyebrow}
       </span>
-      <h2 className="text-[44px] leading-[120%] tracking-[-0.44px] font-extrabold text-slate-900 mb-8">
+      <h2 className="text-3xl sm:text-[44px] leading-[120%] tracking-[-0.44px] font-extrabold text-slate-900 mb-8">
         {title}
       </h2>
 

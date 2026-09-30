@@ -27,12 +27,12 @@ export function CourseHero({
   totalLessons,
 }: CourseHeroProps) {
   return (
-    <div className="relative bg-primary text-primary-foreground pt-34 pb-17">
+    <div className="relative bg-primary text-primary-foreground px-4 pt-34 pb-17 sm:px-6 lg:px-0">
       <div className="absolute inset-0 pointer-events-none bg-grid-[80px] opacity-20 bg-grid-color-white bg-grid-line-[1px]" />
 
       <div className="max-w-7xl mx-auto">
         <div className="lg:col-span-2 space-y-4 w-full">
-          <div className="flex justify-between items-start w-full">
+          <div className="flex flex-wrap justify-between items-start gap-3 w-full">
             <h1 className="text-3xl font-bold max-w-xl">{title}</h1>
             <button
               type="button"
@@ -104,9 +104,9 @@ export function CourseHero({
             </span>
           </div>
 
-          <div className="h-120 relative rounded-2xl overflow-y-visible grid grid-cols-3 gap-16 mt-10">
+          <div className="relative rounded-2xl overflow-y-visible grid grid-cols-1 gap-8 mt-10 lg:grid-cols-3 lg:gap-16 lg:h-120">
             <video
-              className="w-full col-span-2"
+              className="w-full lg:col-span-2"
               controls
               preload="metadata"
               playsInline

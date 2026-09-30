@@ -96,7 +96,7 @@ export function CourseDetails({
               <h3 className="text-base font-bold text-text-foreground">
                 Sneak Peak
               </h3>
-              <div className="grid grid-cols-5 gap-3">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
                 {sneakPeekImages.map((src, index) => (
                   <div
                     key={index}
@@ -153,7 +153,7 @@ export function CourseDetails({
             </h4>
             <div className="space-y-4">
               {modules.map((module) => (
-                <div key={module.id} className="flex items-start gap-4">
+                <div key={module.id} className="flex items-start gap-3 sm:gap-4">
                   <div className="w-10 h-10 rounded-xl bg-[#C4F934] flex items-center justify-center flex-shrink-0">
                     <svg
                       className="w-5 h-5 text-text-foreground"
@@ -233,7 +233,7 @@ export function CourseDetails({
             </p>
           </div>
 
-          <div className="bg-white text-text-foreground p-5 rounded-2xl max-w-md flex items-center gap-6">
+          <div className="bg-white text-text-foreground p-5 rounded-2xl max-w-md flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
             <div className="bg-[#C4F934] rounded-xl p-4 text-center min-w-[90px]">
               <span className="text-xs font-medium text-text-foreground block">
                 Ratings

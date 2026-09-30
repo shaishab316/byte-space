@@ -14,11 +14,11 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
-    <div className="flex items-center justify-center space-x-2 py-8 text-xs font-medium text-muted-foreground">
+    <div className="flex flex-wrap items-center justify-center gap-1 py-8 text-xs font-medium text-muted-foreground sm:gap-2">
       <button
         onClick={() => onPageChange(page - 1)}
         disabled={page <= 1}
-        className="hover:text-foreground px-3.5 py-2.5 border rounded-4xl border-neutral-200 disabled:opacity-40 disabled:cursor-not-allowed"
+        className="hover:text-foreground px-3 py-2 border rounded-4xl border-neutral-200 sm:px-3.5 sm:py-2.5 disabled:opacity-40 disabled:cursor-not-allowed"
       >
         <FiChevronLeft className="w-4 h-4" />
       </button>
@@ -38,7 +38,7 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
       <button
         onClick={() => onPageChange(page + 1)}
         disabled={page >= totalPages}
-        className="p-1 hover:text-foreground cursor-pointer px-3.5 py-2.5 border rounded-4xl border-neutral-200 disabled:opacity-40 disabled:cursor-not-allowed"
+        className="p-1 hover:text-foreground cursor-pointer px-3 py-2 border rounded-4xl border-neutral-200 sm:px-3.5 sm:py-2.5 disabled:opacity-40 disabled:cursor-not-allowed"
       >
         <FiChevronRight className="w-4 h-4" />
       </button>

@@ -29,7 +29,7 @@ const legalLinks = ['Privacy Policy', 'Terms of Service', 'Cookies Settings'];
 export function Footer() {
   return (
     <footer className="w-full bg-background text-foreground border-t border-border">
-      <div className="max-w-7xl mx-auto py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 md:py-16 lg:px-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-12 md:pb-16">
           <div className="lg:col-span-5 flex flex-col space-y-6">
             <a
@@ -95,7 +95,7 @@ export function Footer() {
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-body-xs text-neutral-600">
           <p>© {new Date().getFullYear()} ByteSpace. All rights reserved.</p>
 
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             {legalLinks.map((link) => (
               <a
                 key={link}
