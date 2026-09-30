@@ -70,7 +70,7 @@ export const Navbar: React.FC = () => {
               Sign In
             </Link>
             <Link
-              href="/register"
+              href="/registration"
               className="text-label-md font-light text-white transition-colors hover:text-secondary"
             >
               Join Us

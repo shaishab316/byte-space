@@ -3,7 +3,7 @@ import FilterBar from './_components/FilterBar';
 import Header from './_components/Header';
 import CategoryPills from './_components/CategoryPills';
 import CourseCard from './_components/CourseCard';
-import { allCourses, categories } from '@/app/courses/_data/coursesData';
+import { allCourses, categories } from '../../courses/_data/coursesData';
 
 export default function CoursesPage() {
   return (
