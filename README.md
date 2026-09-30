@@ -1,36 +1,193 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<center>
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="./public/images/logo/logo-light.svg"
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="./public/images/logo/logo-dark.svg"
+    />
+    <img
+      src="./public/images/logo/logo-dark.svg"
+      alt="ByteSpace"
+      width="180"
+    />
+  </picture>
+
+A modern learning platform built with Next.js, TypeScript, MongoDB, and Redux Toolkit.
+</center>
+
+## Overview
+
+ByteSpace is a learning platform focused on course discovery, instructor profiles, and a responsive user experience.
+
+The project uses the **Next.js App Router** with route-level component colocation, reusable UI components, Mongoose for data access, and Redux Toolkit for client-side state.
+
+## Tech Stack
+
+- Next.js 16 + React 19
+- TypeScript
+- Tailwind CSS 4
+- MongoDB + Mongoose
+- Redux Toolkit
+- React Icons
+- Docker + Docker Compose
+- pnpm
+
+## Features
+
+- Course browsing, search, filtering, and pagination
+- Course detail pages
+- Instructor profiles and course listings
+- Login and registration pages
+- Responsive UI
+- Reusable components
+- Course ratings and metadata
+- REST API endpoints for courses and instructors
+- MongoDB database with seed data
+
+## Project Structure
+
+```text
+bytespace-new/
+├── app/
+│   ├── (auth-layout)/
+│   ├── (main-layout)/
+│   └── api/
+├── components/
+│   ├── icons/
+│   ├── layout/
+│   └── ui/
+├── lib/
+│   ├── constants/
+│   ├── db/
+│   ├── fonts/
+│   ├── hooks/
+│   ├── models/
+│   ├── store/
+│   └── types/
+├── public/
+│   └── images/
+├── scripts/
+│   └── seed.ts
+├── Dockerfile
+├── docker-compose.yml
+├── .env.example
+└── package.json
+```
+
+Route-specific components are colocated inside private `_components` folders, while reusable components live under `components/`.
 
 ## Getting Started
 
-First, run the development server:
+### Requirements
+
+- Docker
+- Docker Compose
+
+### Run with Docker
+
+Copy the environment file:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Start the application:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+docker compose up --build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The Compose setup automatically:
 
-## Learn More
+1. Starts MongoDB
+2. Waits for MongoDB to become healthy
+3. Seeds the database
+4. Starts the Next.js application
 
-To learn more about Next.js, take a look at the following resources:
+Open:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+http://localhost:3000
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+No local MongoDB installation is required.
 
-## Deploy on Vercel
+### Stop
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+docker compose down
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To remove the database volume as well:
+
+```bash
+docker compose down -v
+```
+
+## Environment Variables
+
+The default `.env.example` is ready for Docker:
+
+```env
+NODE_ENV=production
+PORT=3000
+MONGODB_URI=mongodb://mongo:27017/bytespace
+```
+
+## API
+
+### Courses
+
+```http
+GET /api/courses
+GET /api/courses/:id
+```
+
+### Instructors
+
+```http
+GET /api/instructors/:id
+```
+
+## Local Development
+
+Docker is the recommended way to run the project.
+
+For local development, install Node.js 20+, pnpm 11+, and MongoDB:
+
+```bash
+pnpm install
+pnpm seed
+pnpm dev
+```
+
+## Available Scripts
+
+| Command      | Description              |
+| ------------ | ------------------------ |
+| `pnpm dev`   | Start development server |
+| `pnpm build` | Create production build  |
+| `pnpm start` | Start production server  |
+| `pnpm lint`  | Run ESLint               |
+| `pnpm seed`  | Seed the database        |
+
+## Architecture
+
+The project keeps responsibilities separated:
+
+- **`app/`** — routes, layouts, and API handlers
+- **`components/`** — reusable UI and layout components
+- **`lib/models/`** — Mongoose models
+- **`lib/db/`** — database connection
+- **`lib/store/`** — Redux Toolkit state
+- **`lib/hooks/`** — reusable application hooks
+- **`scripts/`** — database seeding
+
+The structure keeps route-specific code close to its route while shared functionality remains reusable.
+
+## License
+
+This project is private and intended for evaluation purposes.
