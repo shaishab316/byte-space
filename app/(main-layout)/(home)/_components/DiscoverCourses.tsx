@@ -1,8 +1,8 @@
 'use client';
 
-import CourseCard from '@/app/courses/_components/CourseCard';
-import { categories, courses } from '@/app/courses/_data/coursesData';
 import React, { useState } from 'react';
+import { categories, courses } from '../../courses/_data/coursesData';
+import CourseCard from '../../courses/_components/CourseCard';
 
 export const DiscoverCourses: React.FC = () => {
   const [active, setActive] = useState('Featured');
