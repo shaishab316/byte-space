@@ -9,7 +9,7 @@ export interface InstructorSummary extends CourseInstructor {
 }
 
 export interface Course {
-  id: number;
+  id: string;
   title: string;
   instructor: CourseInstructor;
   rating: number;
@@ -24,9 +24,18 @@ export interface Course {
   enrolledCount?: string;
 }
 
+export interface Pagination {
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+}
+
 export interface CoursesResponse {
   courses: Course[];
   categories: string[];
+  levels: string[];
+  pagination: Pagination;
 }
 
 export interface LessonPreview {
