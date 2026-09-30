@@ -1,6 +1,4 @@
-import React from 'react';
-
-export const CreatorCTA: React.FC = () => {
+export default function CreatorCTA() {
   return (
     <section className="relative overflow-hidden bg-primary px-4 py-24 text-white">
       <div className="absolute inset-0 bg-grid-[80px] opacity-20 bg-grid-color-white bg-grid-line-[1px]" />
@@ -26,6 +24,4 @@ export const CreatorCTA: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default CreatorCTA;
+}

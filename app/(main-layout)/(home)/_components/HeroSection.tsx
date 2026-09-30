@@ -1,9 +1,8 @@
 import Image from 'next/image';
-import SearchForm from './SearchForm';
-import React from 'react';
-import { avatarImages } from '../_constants/avatarImages';
+import { SearchForm } from '@/components/ui/SearchForm';
+import { avatarImages } from '@/lib/constants/avatars';
 
-export const HeroSection: React.FC = () => {
+export default function HeroSection() {
   return (
     <section className="relative min-h-screen w-full bg-primary text-white flex flex-col items-center px-4 pb-20 overflow-hidden font-sans">
       <div className="absolute top-0 w-screen h-full pointer-events-none select-none">
@@ -42,7 +41,7 @@ export const HeroSection: React.FC = () => {
           business with our wide range of courses.
         </p>
 
-        <SearchForm />
+        <SearchForm placeholder="Course, topic, creator" />
       </div>
 
       <div className="absolute inset-0 max-w-6xl mx-auto pointer-events-none hidden md:block">
@@ -91,6 +90,4 @@ export const HeroSection: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default HeroSection;
+}

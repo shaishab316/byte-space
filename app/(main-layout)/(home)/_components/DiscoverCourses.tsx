@@ -1,11 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
-import { categories, courses } from '../../courses/_data/coursesData';
-import CourseCard from '../../courses/_components/CourseCard';
+import { useState } from 'react';
+import { CourseCard } from '@/components/ui/CourseCard';
+import { useGetCoursesQuery } from '@/lib/store/api';
 
-export const DiscoverCourses: React.FC = () => {
+export default function DiscoverCourses() {
   const [active, setActive] = useState('Featured');
+  const { data } = useGetCoursesQuery();
+
+  const categories = data?.categories ?? [];
+  const courses = data?.courses.slice(0, 6) ?? [];
 
   return (
     <section className="bg-white py-20">
@@ -25,17 +29,17 @@ export const DiscoverCourses: React.FC = () => {
         </div>
 
         <div className="mb-10 flex flex-wrap items-center justify-center gap-2">
-          {categories.map((cat) => (
+          {categories.map((category) => (
             <button
-              key={cat}
-              onClick={() => setActive(cat)}
+              key={category}
+              onClick={() => setActive(category)}
               className={`cursor-pointer rounded-full px-4 py-1.5 text-sm font-medium transition ${
-                active === cat
+                active === category
                   ? 'bg-secondary text-neutral-600'
                   : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
               }`}
             >
-              {cat}
+              {category}
             </button>
           ))}
           <button className="rounded-full bg-neutral-100 px-4 py-1.5 text-sm font-medium text-neutral-600 hover:bg-neutral-200">
@@ -51,6 +55,4 @@ export const DiscoverCourses: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default DiscoverCourses;
+}

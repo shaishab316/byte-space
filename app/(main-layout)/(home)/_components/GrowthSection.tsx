@@ -1,7 +1,4 @@
-import Image from 'next/image';
-import React from 'react';
-
-export const GrowthSection: React.FC = () => {
+export default function GrowthSection() {
   return (
     <section className="relative overflow-hidden pt-24">
       <div className="mx-auto grid max-w-7xl justify-between items-center gap-12 lg:grid-cols-2">
@@ -35,10 +32,9 @@ export const GrowthSection: React.FC = () => {
           </div>
         </div>
 
-        <img src="/images/hero/ProfessionalGrowth.png" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/images/hero/ProfessionalGrowth.png" alt="" />
       </div>
     </section>
   );
-};
-
-export default GrowthSection;
+}

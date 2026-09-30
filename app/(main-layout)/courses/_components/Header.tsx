@@ -1,4 +1,4 @@
-import SearchCourse from './SearchCourse';
+import { SearchForm } from '@/components/ui/SearchForm';
 
 export default function Header() {
   return (
@@ -10,7 +10,7 @@ export default function Header() {
             Find Your Next Course
           </h1>
 
-          <SearchCourse />
+          <SearchForm submitLabel="Courses" showSubmitIcon />
         </div>
       </div>
     </header>

@@ -1,6 +1,6 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 
-export const learningPaths = [
+const learningPaths = [
   { name: 'Design', icon: 'design' },
   { name: 'Development', icon: 'development' },
   { name: 'IT & Software', icon: 'it' },
@@ -9,7 +9,7 @@ export const learningPaths = [
   { name: 'Photography', icon: 'photography' },
 ];
 
-const iconMap: Record<string, React.ReactNode> = {
+const iconMap: Record<string, ReactNode> = {
   design: (
     <svg
       width="24"
@@ -92,7 +92,7 @@ const iconMap: Record<string, React.ReactNode> = {
   ),
 };
 
-export const LearningPaths: React.FC = () => {
+export default function LearningPaths() {
   return (
     <section className="bg-neutral-50 px-4 py-20">
       <div className="mx-auto max-w-6xl text-center">
@@ -124,6 +124,4 @@ export const LearningPaths: React.FC = () => {
       </div>
     </section>
   );
-};
-
-export default LearningPaths;
+}

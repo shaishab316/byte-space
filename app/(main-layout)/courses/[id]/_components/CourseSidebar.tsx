@@ -1,8 +1,9 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import Image from 'next/image';
 import { BiFolder } from 'react-icons/bi';
+import type { InstructorSummary, LessonPreview } from '@/lib/types';
 
-const DEFAULT_ICONS: Record<string, React.ReactNode> = {
+const featureIcons: Record<string, ReactNode> = {
   'Learning Resources': (
     <svg
       width="24"
@@ -70,6 +71,17 @@ const DEFAULT_ICONS: Record<string, React.ReactNode> = {
     </svg>
   ),
 };
+
+export interface CourseSidebarProps {
+  totalLessons: number;
+  totalHours: number;
+  previewLessons: LessonPreview[];
+  price: number;
+  features: string[];
+  instructor: InstructorSummary;
+  onEnroll?: () => void;
+  onSeeProfile?: () => void;
+}
 
 export function CourseSidebar({
   totalLessons,
@@ -144,12 +156,12 @@ export function CourseSidebar({
           This course include
         </h4>
         <ul className="space-y-4">
-          {features.map((feature, idx) => (
+          {features.map((feature) => (
             <li
-              key={idx}
+              key={feature}
               className="flex items-center gap-3 text-slate-700 text-[15px]"
             >
-              {DEFAULT_ICONS[feature] ?? (
+              {featureIcons[feature] ?? (
                 <BiFolder className="size-5.5 text-primary shrink-0" />
               )}
               <span>{feature}</span>
@@ -201,29 +213,4 @@ export function CourseSidebar({
       </div>
     </div>
   );
-}
-
-export interface LessonPreview {
-  id: string;
-  order: number;
-  title: string;
-  duration: string;
-}
-
-export interface InstructorInfo {
-  id: string;
-  name: string;
-  title: string;
-  avatarUrl: string;
-}
-
-export interface CourseSidebarProps {
-  totalLessons: number;
-  totalHours: number;
-  previewLessons: LessonPreview[];
-  price: number;
-  features: string[];
-  instructor: InstructorInfo;
-  onEnroll?: () => void;
-  onSeeProfile?: () => void;
 }

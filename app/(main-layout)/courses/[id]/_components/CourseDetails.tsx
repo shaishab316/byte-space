@@ -2,159 +2,42 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { CheckCircleIcon } from '@/components/icons';
+import { StarRating } from '@/components/ui/StarRating';
+import type {
+  ModuleItem,
+  RatingBreakdown,
+  ReviewItem,
+} from '@/lib/types';
 
-export interface ModuleItem {
-  id: number | string;
-  title: string;
-  description: string;
+interface CourseDetailsProps {
+  description: string[];
+  sneakPeekImages: string[];
+  keyPoints: string[];
+  modules: ModuleItem[];
+  progressPercent: number;
+  averageRating: number;
+  ratingBreakdown: RatingBreakdown[];
+  reviews: ReviewItem[];
 }
 
-export interface ReviewItem {
-  id: number | string;
-  author: string;
-  role: string;
-  avatar: string;
-  rating: number;
-  date: string;
-  content: string;
-}
+const tabs = [
+  { key: 'about', label: 'About' },
+  { key: 'lessons', label: 'Lessons' },
+  { key: 'reviews', label: 'Reviews' },
+] as const;
 
-export interface RatingBreakdown {
-  stars: number;
-  count: number;
-}
-
-export interface CourseDetailsProps {
-  description?: string[];
-  sneakPeekImages?: string[];
-  keyPoints?: string[];
-  modules?: ModuleItem[];
-  progressPercent?: number;
-  averageRating?: number;
-  ratingBreakdown?: RatingBreakdown[];
-  reviews?: ReviewItem[];
-}
-
-const DEFAULT_DESCRIPTION = [
-  'Embark on an enlightening exploration into the world of digital creation with our comprehensive course, "Build Digital Assets: A Comprehensive Guide." This transformative learning experience invites you to delve deep into the intricacies of crafting impactful digital content. From laying the groundwork with foundational concepts to mastering advanced techniques, this guide is meticulously curated to empower you with the skills essential for navigating the dynamic landscape of digital asset creation.',
-  "In the initial modules, you'll establish a solid foundation by immersing yourself in the foundational concepts that form the backbone of digital asset creation. Understand the fundamental elements that constitute compelling digital content and gain proficiency in leveraging these elements to communicate effectively in the digital realm.",
-  "As you progress through the course, you'll ascend to higher levels of expertise, delving into the nuances of design principles that drive impactful creations. Uncover the secrets behind effective visual communication, exploring color theory, typography, and layout strategies that elevate your digital assets to new heights. Engage in hands-on exercises that reinforce your understanding, allowing you to apply these principles in practical scenarios.",
-];
-
-const DEFAULT_KEY_POINTS = [
-  'Foundational Concepts',
-  'Design Principles Mastery',
-  'Advanced Techniques in Digital Creation',
-  'Project Showcase and Critique',
-  'Optimizing for Various Platforms',
-  'Digital Asset Management Best Practices',
-  'Monetization Strategies',
-  'Capstone Project: Building Your Portfolio',
-];
-
-const DEFAULT_MODULES: ModuleItem[] = [
-  {
-    id: 1,
-    title: 'Module 1: Introduction to Digital Assets',
-    description:
-      "Lay the groundwork with lessons like 'Understanding Digital Elements' and 'Navigating Design Software Tools.' Dive into the essentials of digital asset creation.",
-  },
-  {
-    id: 2,
-    title: 'Module 2: Design Principles for Impact',
-    description:
-      "Master the principles that drive impactful designs with lessons such as 'Color Theory in Digital Design' and 'Typography Essentials.' Elevate your visual communication skills.",
-  },
-  {
-    id: 4,
-    title: 'Module 4: User-Centric Design Strategies',
-    description:
-      "Understand 'Design Thinking in Digital Creation' and delve into 'User Experience (UX) Essentials.' Craft digital assets with a focus on user-centric design.",
-  },
-  {
-    id: 5,
-    title: 'Module 5: Interactive Media and Engagement',
-    description:
-      "Engage your audience with lessons like 'Creating Interactive Presentations' and 'Integrating Multimedia Elements.' Master the art of creating immersive digital experiences.",
-  },
-  {
-    id: 6,
-    title: 'Module 6: Project Showcase and Critique',
-    description:
-      "Perfect your presentation skills with 'Effective Presentation Techniques' and embrace collaboration with 'Peer Critique and Collaboration.' Showcase your work with confidence.",
-  },
-  {
-    id: 7,
-    title: 'Module 7: Optimizing Digital Assets for Various Platforms',
-    description:
-      "Adapt your digital creations for 'Mobile Platforms' and optimize for 'Social Media.' Ensure widespread accessibility and engagement across diverse digital landscapes.",
-  },
-];
-
-const DEFAULT_RATING_BREAKDOWN: RatingBreakdown[] = [
-  { stars: 5, count: 720 },
-  { stars: 4, count: 120 },
-  { stars: 3, count: 21 },
-  { stars: 2, count: 12 },
-  { stars: 1, count: 16 },
-];
-
-const DEFAULT_REVIEWS: ReviewItem[] = [
-  {
-    id: 1,
-    author: 'PurePearl Studio',
-    role: 'UI/UX Designer',
-    avatar:
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=150',
-    rating: 5,
-    date: 'a year ago',
-    content:
-      'The course provided me with a comprehensive understanding of digital asset creation. The lessons were in-depth, practical, and immediately applicable to my work. Highly recommended!',
-  },
-  {
-    id: 2,
-    author: 'Albert Flores',
-    role: 'UI/UX Designer',
-    avatar:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150',
-    rating: 5,
-    date: 'a year ago',
-    content:
-      "This course transformed my approach to digital design. The combination of theory, hands-on exercises, and real-world applications made it a truly enriching experience. Excited to implement what I've learned!",
-  },
-  {
-    id: 3,
-    author: 'Cody Fisher',
-    role: 'UI/UX Designer',
-    avatar:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150',
-    rating: 5,
-    date: 'a year ago',
-    content:
-      'The project showcase and critique module created a collaborative environment where I could showcase my work, receive valuable feedback, and refine my skills. It added a unique and valuable dimension to the learning process.',
-  },
-  {
-    id: 4,
-    author: 'Brooklyn Simmons',
-    role: 'UI/UX Designer',
-    avatar:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150',
-    rating: 5,
-    date: 'a year ago',
-    content:
-      'The lessons on optimizing digital assets for various platforms were particularly insightful. The course adapts to the evolving digital landscape, and the engaging content kept me motivated throughout.',
-  },
-];
+const ratingFilters: (number | 'all')[] = ['all', 5, 4, 3, 2, 1];
 
 export function CourseDetails({
-  description = DEFAULT_DESCRIPTION,
-  sneakPeekImages = [],
-  keyPoints = DEFAULT_KEY_POINTS,
-  modules = DEFAULT_MODULES,
-  progressPercent = 55,
-  averageRating = 4.7,
-  ratingBreakdown = DEFAULT_RATING_BREAKDOWN,
-  reviews = DEFAULT_REVIEWS,
+  description,
+  sneakPeekImages,
+  keyPoints,
+  modules,
+  progressPercent,
+  averageRating,
+  ratingBreakdown,
+  reviews,
 }: CourseDetailsProps) {
   const [activeTab, setActiveTab] = useState<'about' | 'lessons' | 'reviews'>(
     'about',
@@ -164,26 +47,19 @@ export function CourseDetails({
   >('all');
 
   const totalReviewsCount = ratingBreakdown.reduce(
-    (acc, curr) => acc + curr.count,
+    (total, item) => total + item.count,
     0,
   );
 
   const filteredReviews =
     selectedRatingFilter === 'all'
       ? reviews
-      : reviews.filter((r) => r.rating === selectedRatingFilter);
+      : reviews.filter((review) => review.rating === selectedRatingFilter);
 
   return (
     <div className="space-y-8 mt-10 text-text-foreground max-w-4xl mx-auto">
-      {/* Navigation Tabs */}
       <div className="flex items-center gap-2">
-        {(
-          [
-            { key: 'about', label: 'About' },
-            { key: 'lessons', label: 'Lessons' },
-            { key: 'reviews', label: 'Reviews' },
-          ] as const
-        ).map((tab) => (
+        {tabs.map((tab) => (
           <button
             key={tab.key}
             type="button"
@@ -199,7 +75,6 @@ export function CourseDetails({
         ))}
       </div>
 
-      {/* ----------------- ABOUT TAB ----------------- */}
       {activeTab === 'about' && (
         <div className="space-y-8">
           <div className="space-y-4">
@@ -222,14 +97,14 @@ export function CourseDetails({
                 Sneak Peak
               </h3>
               <div className="grid grid-cols-5 gap-3">
-                {sneakPeekImages.map((src, idx) => (
+                {sneakPeekImages.map((src, index) => (
                   <div
-                    key={idx}
+                    key={index}
                     className="relative aspect-video bg-slate-800 rounded-lg overflow-hidden border border-white/5"
                   >
                     <Image
                       src={src}
-                      alt={`Sneak peak ${idx + 1}`}
+                      alt={`Sneak peak ${index + 1}`}
                       fill
                       sizes="(max-width: 768px) 20vw, 15vw"
                       className="object-cover"
@@ -245,22 +120,12 @@ export function CourseDetails({
               Key Points
             </h3>
             <ul className="space-y-2">
-              {keyPoints.map((point, idx) => (
+              {keyPoints.map((point) => (
                 <li
-                  key={idx}
+                  key={point}
                   className="flex items-center gap-2 text-xs text-text-foreground"
                 >
-                  <svg
-                    className="w-5 h-5 flex-shrink-0"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"
-                      fill="#003BE2"
-                    />
-                  </svg>
+                  <CheckCircleIcon className="w-5 h-5 flex-shrink-0" />
                   <span>{point}</span>
                 </li>
               ))}
@@ -384,6 +249,7 @@ export function CourseDetails({
                   totalReviewsCount > 0
                     ? (item.count / totalReviewsCount) * 100
                     : 0;
+
                 return (
                   <div key={item.stars} className="flex items-center gap-2">
                     <div className="w-16 h-1.5 bg-slate-200 rounded-full overflow-hidden">
@@ -392,11 +258,10 @@ export function CourseDetails({
                         style={{ width: `${percentage}%` }}
                       />
                     </div>
-                    <div className="flex text-amber-400 text-[10px]">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <span key={i}>{i < item.stars ? '★' : '☆'}</span>
-                      ))}
-                    </div>
+                    <StarRating
+                      rating={item.stars}
+                      className="flex text-amber-400 text-[10px]"
+                    />
                     <span className="text-[10px] text-text-foreground ml-auto">
                       {item.count}
                     </span>
@@ -411,30 +276,27 @@ export function CourseDetails({
               Individual Reviews:
             </h4>
             <div className="flex items-center gap-2 flex-wrap">
-              <button
-                type="button"
-                onClick={() => setSelectedRatingFilter('all')}
-                className={`px-4 py-1 rounded-full text-xs font-medium transition-colors ${
-                  selectedRatingFilter === 'all'
-                    ? 'bg-[#C4F934] text-text-foreground font-semibold'
-                    : 'bg-white/10 text-text-foreground hover:bg-white/20'
-                }`}
-              >
-                All rating
-              </button>
-              {[5, 4, 3, 2, 1].map((star) => (
+              {ratingFilters.map((filter) => (
                 <button
-                  key={star}
+                  key={filter}
                   type="button"
-                  onClick={() => setSelectedRatingFilter(star)}
-                  className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 transition-colors ${
-                    selectedRatingFilter === star
+                  onClick={() => setSelectedRatingFilter(filter)}
+                  className={`${
+                    filter === 'all' ? 'px-4' : 'px-3'
+                  } py-1 rounded-full text-xs font-medium flex items-center gap-1 transition-colors ${
+                    selectedRatingFilter === filter
                       ? 'bg-[#C4F934] text-text-foreground font-semibold'
                       : 'bg-white/10 text-text-foreground hover:bg-white/20'
                   }`}
                 >
-                  <span>★</span>
-                  <span>{star}</span>
+                  {filter === 'all' ? (
+                    'All rating'
+                  ) : (
+                    <>
+                      <span>★</span>
+                      <span>{filter}</span>
+                    </>
+                  )}
                 </button>
               ))}
             </div>
@@ -469,11 +331,10 @@ export function CourseDetails({
                     </span>
                   </div>
 
-                  <div className="flex text-amber-400 text-xs">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <span key={i}>{i < review.rating ? '★' : '☆'}</span>
-                    ))}
-                  </div>
+                  <StarRating
+                    rating={review.rating}
+                    className="flex text-amber-400 text-xs"
+                  />
 
                   <p className="text-xs text-text-foreground leading-relaxed">
                     {review.content}

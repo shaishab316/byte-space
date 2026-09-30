@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { CiShare2 } from 'react-icons/ci';
-import { CourseSidebar, CourseSidebarProps } from './CourseSidebar';
+import { BarChartIcon } from '@/components/icons';
+import { CourseSidebar, type CourseSidebarProps } from './CourseSidebar';
 
-interface CourseHeroProps {
+interface CourseHeroProps extends CourseSidebarProps {
   title: string;
   subtitle: string;
-  instructorName: string;
   level: string;
   rating: number;
   reviewCount: number;
@@ -15,7 +15,6 @@ interface CourseHeroProps {
 export function CourseHero({
   title,
   subtitle,
-  instructorName,
   level,
   rating,
   reviewCount,
@@ -26,7 +25,7 @@ export function CourseHero({
   price,
   totalHours,
   totalLessons,
-}: CourseHeroProps & CourseSidebarProps) {
+}: CourseHeroProps) {
   return (
     <div className="relative bg-primary text-primary-foreground pt-34 pb-17">
       <div className="absolute inset-0 pointer-events-none bg-grid-[80px] opacity-20 bg-grid-color-white bg-grid-line-[1px]" />
@@ -47,25 +46,18 @@ export function CourseHero({
           <p className="text-blue-100 text-sm">{subtitle}</p>
           <p className="text-xs text-blue-200">
             by{' '}
-            <Link href="#" className="text-secondary hover:underline">
-              {instructorName}
+            <Link
+              href={`/instructors/${instructor.id}`}
+              onClick={(event) => event.stopPropagation()}
+              className="text-primary hover:underline relative z-10 font-medium"
+            >
+              {instructor.name}
             </Link>
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-2 text-xs">
             <span className="bg-white text-foreground px-5 py-2 rounded-full flex items-center gap-2">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.5 4H19.5V20H16.5V4ZM4.5 14H7.5V20H4.5V14ZM10.5 9H13.5V20H10.5V9Z"
-                  fill="#003BE2"
-                />
-              </svg>
+              <BarChartIcon color="#003BE2" />
               {level}
             </span>
             <span className="bg-white text-foreground px-5 py-2 rounded-full flex items-center gap-2">

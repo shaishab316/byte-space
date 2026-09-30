@@ -1,4 +1,3 @@
-import React from 'react';
 import HeroSection from './_components/HeroSection';
 import LogoStrip from './_components/LogoStrip';
 import DiscoverCourses from './_components/DiscoverCourses';
@@ -7,7 +6,7 @@ import GrowthSection from './_components/GrowthSection';
 import CreateCourses from './_components/CreateCourses';
 import CreatorCTA from './_components/CreatorCTA';
 
-export const HomePage: React.FC = () => {
+export default function HomePage() {
   return (
     <>
       <HeroSection />
@@ -19,9 +18,6 @@ export const HomePage: React.FC = () => {
         <CreateCourses />
       </div>
       <CreatorCTA />
-      {/* <Testimonials /> */}
     </>
   );
-};
-
-export default HomePage;
+}
