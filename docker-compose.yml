@@ -1,0 +1,54 @@
+services:
+  mongo:
+    image: mongo:8
+    container_name: bytespace-mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: bytespace
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'mongosh --quiet --eval "db.adminCommand(''ping'').ok" | grep 1',
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  seed:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: source
+    container_name: bytespace-seed
+    environment:
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongo:27017/bytespace
+    depends_on:
+      mongo:
+        condition: service_healthy
+    command: pnpm seed
+    restart: 'no'
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    container_name: bytespace-app
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      MONGODB_URI: mongodb://mongo:27017/bytespace
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+    ports:
+      - '3000:3000'
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+
+volumes:
+  mongo_data:

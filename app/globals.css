@@ -1,26 +1,164 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import 'tailwindcss';
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-poppins);
+  --font-body: var(--font-satoshi);
+  --font-sans: var(--font-satoshi);
+
+  --color-primary: #0445ff;
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #cbfc01;
+  --color-secondary-foreground: #242528;
+
+  --color-background: #ffffff;
+  --color-foreground: #242528;
+
+  --color-muted: #f5f5f6;
+  --color-muted-foreground: #666973;
+
+  --color-border: #e5e6e8;
+
+  --color-neutral-50: #f5f5f6;
+  --color-neutral-100: #e5e6e8;
+  --color-neutral-200: #ced0d3;
+  --color-neutral-300: #abaeb5;
+  --color-neutral-400: #82868e;
+  --color-neutral-500: #666973;
+  --color-neutral-600: #585a62;
+  --color-neutral-700: #4b4c53;
+  --color-neutral-800: #424348;
+  --color-neutral-900: #3a3b3f;
+  --color-neutral-950: #242528;
+
+  --text-display: 72px;
+  --text-display--line-height: 1.2;
+
+  --text-heading-lg: 50px;
+  --text-heading-lg--line-height: 1.2;
+
+  --text-heading-md: 44px;
+  --text-heading-md--line-height: 1.2;
+
+  --text-heading-sm: 36px;
+  --text-heading-sm--line-height: 1.2;
+
+  --text-heading-xs: 20px;
+  --text-heading-xs--line-height: 1.2;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.6;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 1.6;
+
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 1.6;
+
+  --text-body-xs: 12px;
+  --text-body-xs--line-height: 1.6;
+
+  --text-label-lg: 18px;
+  --text-label-lg--line-height: 1.2;
+
+  --text-label-md: 16px;
+  --text-label-md--line-height: 1.2;
+
+  --text-label-sm: 14px;
+  --text-label-sm--line-height: 1.2;
+
+  --text-label-xs: 12px;
+  --text-label-xs--line-height: 1.2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility bg-grid-* {
+  --grid-color-raw: var(--grid-color-value, 255 255 255);
+  --grid-alpha: var(--grid-opacity-value, 0.4);
+  --grid-line: var(--grid-width-value, 1px);
+
+  background-image:
+    linear-gradient(
+      to right,
+      rgb(var(--grid-color-raw) / var(--grid-alpha)) 0px,
+      rgb(var(--grid-color-raw) / var(--grid-alpha)) var(--grid-line),
+      transparent var(--grid-line)
+    ),
+    linear-gradient(
+      to bottom,
+      rgb(var(--grid-color-raw) / var(--grid-alpha)) 0px,
+      rgb(var(--grid-color-raw) / var(--grid-alpha)) var(--grid-line),
+      transparent var(--grid-line)
+    );
+
+  background-size: --value([length]) --value([length]);
+}
+
+@utility bg-grid-line-* {
+  --grid-width-value: --value([length]);
+}
+
+@utility bg-grid-color-* {
+  --grid-color-value: --value([color]);
+}
+
+@keyframes skeleton-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@utility skeleton {
+  background-color: var(--color-neutral-100, #e5e6e8);
+  background-image: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgb(255 255 255 / 0.72) 50%,
+    transparent 80%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@utility skeleton-inverse {
+  background-color: rgb(255 255 255 / 0.22);
+  background-image: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgb(255 255 255 / 0.34) 50%,
+    transparent 80%
+  );
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
