@@ -2,14 +2,17 @@
 
 import Image from 'next/image';
 import { useGetInstructorQuery } from '@/lib/store/api';
+import { InstructorHeaderSkeleton } from './HeaderSkeleton';
 
 interface HeaderProps {
   instructorId: string;
 }
 
 export default function Header({ instructorId }: HeaderProps) {
-  const { data: instructor } = useGetInstructorQuery(instructorId);
+  const { data: instructor, isLoading } =
+    useGetInstructorQuery(instructorId);
 
+  if (isLoading) return <InstructorHeaderSkeleton />;
   if (!instructor) return null;
 
   return (

@@ -3,6 +3,7 @@
 import { NotFoundContent } from '@/components/ui/NotFoundContent';
 import { useGetCourseQuery } from '@/lib/store/api';
 import { CourseDetails } from './CourseDetails';
+import { CourseDetailSkeleton } from './CourseDetailSkeleton';
 import { CourseHero } from './CourseHero';
 
 interface CoursePageViewProps {
@@ -10,8 +11,9 @@ interface CoursePageViewProps {
 }
 
 export function CoursePageView({ courseId }: CoursePageViewProps) {
-  const { data: course, isError } = useGetCourseQuery(courseId);
+  const { data: course, isLoading, isError } = useGetCourseQuery(courseId);
 
+  if (isLoading) return <CourseDetailSkeleton />;
   if (isError) return <NotFoundContent />;
   if (!course) return null;
 

@@ -3,10 +3,13 @@
 import { useState } from 'react';
 import { CourseCard } from '@/components/ui/CourseCard';
 import { useGetCoursesQuery } from '@/lib/store/api';
+import { DiscoverCoursesSkeleton } from './DiscoverCoursesSkeleton';
 
 export default function DiscoverCourses() {
   const [active, setActive] = useState('Featured');
-  const { data } = useGetCoursesQuery();
+  const { data, isLoading } = useGetCoursesQuery();
+
+  if (isLoading) return <DiscoverCoursesSkeleton />;
 
   const categories = data?.categories ?? [];
   const courses = data?.courses.slice(0, 6) ?? [];

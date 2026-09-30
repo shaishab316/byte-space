@@ -5,6 +5,8 @@ import { useCourseFilters } from '@/lib/hooks/use-course-filters';
 import { useGetCoursesQuery, type CoursesQueryArgs } from '@/lib/store/api';
 import { CategoryPills } from './CategoryPills';
 import { CourseCard } from './CourseCard';
+import { CourseCardSkeleton } from './CourseCardSkeleton';
+import { CourseExplorerSkeleton } from './CourseExplorerSkeleton';
 import { FilterBar } from './FilterBar';
 import { Pagination } from './Pagination';
 
@@ -35,7 +37,11 @@ export function CourseExplorer({
     [filters, instructor],
   );
 
-  const { data } = useGetCoursesQuery(queryArgs);
+  const { data, isLoading, isFetching } = useGetCoursesQuery(queryArgs);
+
+  if (isLoading) {
+    return <CourseExplorerSkeleton cardWidthClassName={cardWidthClassName} />;
+  }
 
   const courses = data?.courses ?? [];
   const pagination = data?.pagination;
@@ -49,14 +55,21 @@ export function CourseExplorer({
 
       <CategoryPills categories={data?.categories ?? []} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
-        {courses.map((course) => (
-          <CourseCard
-            key={course.id}
-            course={course}
-            className={cardWidthClassName}
-          />
-        ))}
+      <div
+        aria-busy={isFetching}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4"
+      >
+        {isFetching
+          ? Array.from({ length: PAGE_SIZE }, (_, index) => (
+              <CourseCardSkeleton key={index} className={cardWidthClassName} />
+            ))
+          : courses.map((course) => (
+              <CourseCard
+                key={course.id}
+                course={course}
+                className={cardWidthClassName}
+              />
+            ))}
       </div>
 
       <Pagination
